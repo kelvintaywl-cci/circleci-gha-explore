@@ -21,10 +21,9 @@ parameters:
 jobs:
   test:
     docker:
-      - image: cimg/node:lts
+      - image: cimg/base:current
     steps:
-      - run: npm install
-      - run: npm test
+      - checkout
 
 workflows:
   # This workflow is set to be conditionally triggered, only when
