@@ -1,0 +1,17 @@
+name: Trigger CircleCI
+
+on:
+  pull_request_review:
+    types: [submitted]
+jobs:
+  trigger-circleci:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - name: on PR review
+        id: circleci_on_github_pr_review
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0.4
+        with:
+          ref: ${{ github.head_ref }}
+        env:
+          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
